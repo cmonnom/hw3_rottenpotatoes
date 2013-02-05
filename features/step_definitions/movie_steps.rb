@@ -32,5 +32,10 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
     field_name = "ratings_" + rating.lstrip
     uncheck ? uncheck(field_name) : check(field_name)
   end
-
 end
+  
+Then /I should see all of the movies/ do 
+  rows = page.all("table#movies tr").count
+  rows == Movie.count(:title) + 1
+end
+
