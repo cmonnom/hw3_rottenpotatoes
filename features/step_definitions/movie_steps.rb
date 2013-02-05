@@ -36,6 +36,6 @@ end
   
 Then /I should see all of the movies/ do 
   rows = page.all("table#movies tr").count
-  rows == Movie.count(:title) + 1
+  rows.should == Movie.count(:title) + 1
 end
 

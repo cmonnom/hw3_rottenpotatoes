@@ -23,7 +23,8 @@ Background: movies have been added to database
   
 Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to check the 'PG' and 'R' checkboxes
-  When I check the following ratings: PG, R
+  Given I check the following ratings: PG, R
+#When I check the following ratings: PG, R
   And I uncheck the following ratings: G, PG-13, NC-17
   And I press "Refresh"
   Then I should see "Amelie"
@@ -36,8 +37,11 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to ensure that other movies are not visible
 
 Scenario: no ratings selected
-  # see assignment
+  Given I uncheck the following ratings: G, PG, PG-13, NC-17, R
+  And I press "Refresh"
+  Then I should see all of the movies
 
 Scenario: all ratings selected
-  When I check the following ratings: G, PG, PG-13, NC-17, R
+  Given I check the following ratings: G, PG, PG-13, NC-17, R
+  And I press "Refresh"
   Then I should see all of the movies
