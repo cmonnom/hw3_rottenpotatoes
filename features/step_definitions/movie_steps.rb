@@ -12,12 +12,13 @@ end
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
-Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
+Then /I should (not )?see "(.*)" before "(.*)"/ do |i_should_not_see, e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  page.body.index(e1) > page.body.index(e2)
+  i_should_not_see ? (page.body.index(e1) < page.body.index(e2)) : (page.body.index(e1) > page.body.index(e2))
 # flunk "Unimplemented"
 end
+
 
 # Make it easier to express checking or unchecking several boxes at once
 #  "When I uncheck the following ratings: PG, G, R"
