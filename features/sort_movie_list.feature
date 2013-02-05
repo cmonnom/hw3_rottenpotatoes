@@ -24,7 +24,7 @@ Background: movies have been added to database
 Scenario: sort movies alphabetically
   Given I check the following ratings: R, G, PG, PG-13, NC-17
   When I follow "Movie Title"
-  Then I should see "2001: A Space Odyssey" before "Aladdin"
+  Then I should see "Aladdin" before "Amelie"
   And I should not see "Amelie" before "Aladdin"
 #And show me the page
 

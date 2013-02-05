@@ -15,7 +15,9 @@ end
 Then /I should (not )?see "(.*)" before "(.*)"/ do |i_should_not_see, e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.body is the entire content of the page as a string.
-  i_should_not_see ? (page.body.index(e1) < page.body.index(e2)) : (page.body.index(e1) > page.body.index(e2))
+  puts e1 + " " + page.body.index(e1).inspect + " " + e2 + " " + page.body.index(e2).inspect
+  puts (i_should_not_see && (page.body.index(e1) > page.body.index(e2))).inspect
+  i_should_not_see ? page.body.index(e1).should > page.body.index(e2) : page.body.index(e1).should < page.body.index(e2) 
 # flunk "Unimplemented"
 end
 
